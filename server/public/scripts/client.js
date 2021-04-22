@@ -17,14 +17,15 @@ function setupClickListeners() {
     // NOT WORKING YET :(
     // using a test object
     let koalaToSend = {
-      name: 'testName',
-      age: 'testName',
-      gender: 'testName',
-      readyForTransfer: 'testName',
-      notes: 'testName',
+      name: $('#nameIn').val(),
+      age: $('#ageIn').val(),
+      gender: $('#genderIn').val(),
+      readyForTransfer: $('#readyForTransferIn').val(),
+      notes: $('#notesIn').val(),
     };
-    // call saveKoala with the new objecct
+    // call saveKoala with the new object
     saveKoala( koalaToSend );
+    // TODO set up clear inputs 
   }); 
   
   // mark koala as ready for transfer
@@ -128,4 +129,3 @@ function removeKoala(koalaId){
     alert(`Error removing koala.`, error);
   })
 }//end removeKoala
-  
