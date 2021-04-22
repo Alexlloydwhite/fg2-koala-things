@@ -26,6 +26,7 @@ function setupClickListeners() {
     // call saveKoala with the new object
     saveKoala( koalaToSend );
   }); 
+  $('#viewKoalas').on('click', '.delete-koala', removeKoalaHandler);
 
   // mark koala as ready for transfer
   $('#viewKoalas').on('click', '.mark-ready', markReadyHandler);
