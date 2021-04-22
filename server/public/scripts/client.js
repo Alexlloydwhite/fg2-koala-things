@@ -38,3 +38,21 @@ function saveKoala( newKoala ){
   // ajax call to server to get koalas
  
 }
+
+function removeKoalaHandler(){
+  removeKoala($(this).data("id"))
+}//end removeKoalaHandler
+
+function removeKoala(koalaId){
+  $.ajax({
+    method: 'DELETE',
+    url: `/koalas/${koalaId}`,
+  })
+  .then( response =>{
+    console.log('Removed koala woot woot!');
+    getKoalas();
+  })
+  .catch( error =>{
+    alert(`Error removing koala.`, error);
+  })
+}//end removeKoala
