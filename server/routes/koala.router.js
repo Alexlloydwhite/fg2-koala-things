@@ -1,25 +1,31 @@
 const { Router } = require('express');
 const express = require('express');
 const koalaRouter = express.Router();
-const router = express.Router();
+// const router = express.Router();
 
 // DB CONNECTION
 const pg = require('pg');
-const pool = new pg.Pool({
-    database: 'Koalas',
+
+const config = {
+    database: 'Koala',
     host: 'localhost',
     port: 5432,
     max: 10,
     idleTimeoutMillis: 30000,
-});
+}
+
+const pool = new pg.Pool(config);
+
 pool.on("connect", () => {
     console.log("connected to postgres");
 });
-pool.on("connect" , () => {
+
+pool.on("error", (err) => {
     console.log("Error connecting to postgres", err);
 });
+
 // GET
-router.get('/', (req, res) => {
+koalaRouter.get('/', (req, res) => {
     let queryText = 'SELECT * FROM "koala-DB";';
     pool.query(queryText).then(result => {
         res.send(result.rows);
@@ -31,7 +37,7 @@ router.get('/', (req, res) => {
 });
 
 // POST
-router.post('/', (req, res) => {
+koalaRouter.post('/', (req, res) => {
     let newKoala = req.body;
     console.log('Adding Koala', newKoala);
 
@@ -48,7 +54,7 @@ router.post('/', (req, res) => {
 });
 
 // PUT
-router.put('/isReady/;id', (req, res) => {
+koalaRouter.put('/isReady/:id', (req, res) => {
     let koalaId = req.params.id;
     let boolean = req.body.boolean;
     let sqlText = '';
@@ -69,7 +75,7 @@ router.put('/isReady/;id', (req, res) => {
 });
 
 // DELETE
-router.delete('/:id', (req, res) => {
+koalaRouter.delete('/:id', (req, res) => {
     let reqId = req.params.id;
     console.log('Delete request id', reqId);
 

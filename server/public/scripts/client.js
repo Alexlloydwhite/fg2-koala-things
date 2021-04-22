@@ -1,11 +1,9 @@
-const { response } = require("express");
-
 console.log( 'js' );
 
 $( document ).ready( function(){
   console.log( 'JQ' );
   // Establish Click Listeners
-  setupClickListeners()
+  setupClickListeners();
   // load existing koalas on page load
   getKoalas();
 }); // end doc ready
@@ -54,7 +52,7 @@ function getKoalas(){
     renderKoalas(response);
   })
   .catch( function(error) {
-    console.log(`Error in GET, ${error}`);
+    console.log('Error in GET,', error);
   })
 } // end getKoalas
 
