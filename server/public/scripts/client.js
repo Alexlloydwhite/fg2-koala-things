@@ -74,7 +74,7 @@ function renderKoalas(koalas){
 
 function saveKoala( newKoala ){
   console.log( 'in saveKoala', newKoala );
-  // ajax call to server to post koalas
+  // ajax call to server to get koalas
   $.ajax({
     type: 'POST',
     url: '/koalas',
@@ -84,8 +84,26 @@ function saveKoala( newKoala ){
     console.log('Response from server.', response);
     getKoalas();
   })
-  .catch(error => {
-    console.log('Error in POST', error)
-    alert('Unable to add koala at this time.');
+  .catch(error =>{
+    console.log('Error', error);
   });
-}//end saveKoala
+}
+
+function removeKoalaHandler(){
+  removeKoala($(this).data("id"))
+}//end removeKoalaHandler
+
+function removeKoala(koalaId){
+  $.ajax({
+    method: 'DELETE',
+    url: `/koalas/${koalaId}`,
+  })
+  .then( response =>{
+    console.log('Removed koala woot woot!');
+    getKoalas();
+  })
+  .catch( error =>{
+    alert(`Error removing koala.`, error);
+  })
+}//end removeKoala
+  
