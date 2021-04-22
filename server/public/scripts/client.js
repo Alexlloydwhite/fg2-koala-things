@@ -66,8 +66,8 @@ function renderKoalas(koalas){
         </button>
       </td>
     `)
+    $('#viewKoalas').append(newRow);
   }
-
 }
 
 function saveKoala( newKoala ){
