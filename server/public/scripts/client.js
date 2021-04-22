@@ -25,11 +25,20 @@ function setupClickListeners() {
     };
     // call saveKoala with the new object
     saveKoala( koalaToSend );
-    // TODO set up clear inputs 
   }); 
-  
+
   // mark koala as ready for transfer
   $('#viewKoalas').on('click', '.mark-ready', markReadyHandler);
+  // clears inputs
+  clearInputs();
+}
+
+function clearInputs(){
+  $('#nameIn').val('');
+  $('#ageIn').val('');
+  $('#genderIn').val('');
+  $('#readyForTransferIn').val('');
+  $('#notesIn').val('');
 }
 
 function getKoalas(){
