@@ -10,7 +10,6 @@
   "author": "@devjana",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1",
     "pg": "^8.6.0"
   },
   "repository": {
