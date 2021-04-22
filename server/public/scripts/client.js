@@ -8,7 +8,6 @@ $( document ).ready( function(){
   setupClickListeners()
   // load existing koalas on page load
   getKoalas();
-
 }); // end doc ready
 
 function setupClickListeners() {
@@ -27,6 +26,9 @@ function setupClickListeners() {
     // call saveKoala with the new obejct
     saveKoala( koalaToSend );
   }); 
+  
+  // mark koala as ready for transfer
+  $('#viewKoalas').on('click', '.mark-ready', markReadyHandler);
 }
 
 function getKoalas(){
@@ -70,6 +72,26 @@ function renderKoalas(koalas){
     `)
     $('#viewKoalas').append(newRow);
   }
+}
+
+function markReadyHandler() {
+  markAsReady( $(this).data("id"), "true" )
+}
+
+function markAsReady(koalaId, isReady) {
+  $.ajax({
+    method: 'PUT',
+    url: `/koalas/${koalaId}`,
+    data: {
+      isReady: isReady
+    }
+  })
+  .then(response => {
+    getKoalas();
+  })
+  .catch(error => {
+    console.log(`error on koala mark as ready. ${error}`);
+  })
 }
 
 function saveKoala( newKoala ){
