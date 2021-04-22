@@ -1,3 +1,5 @@
+const { response } = require("express");
+
 console.log( 'js' );
 
 $( document ).ready( function(){
@@ -35,6 +37,18 @@ function getKoalas(){
 
 function saveKoala( newKoala ){
   console.log( 'in saveKoala', newKoala );
-  // ajax call to server to get koalas
- 
-}
+  // ajax call to server to post koalas
+  $.ajax({
+    type: 'POST',
+    url: '/koalas',
+    data: newKoala,
+  })
+  .then( response => {
+    console.log('Response from server.', response);
+    getKoalas();
+  })
+  .catch(error => {
+    console.log('Error in POST', error)
+    alert('Unable to add koala at this time.');
+  });
+}//end saveKoala
