@@ -8,7 +8,6 @@ $( document ).ready( function(){
   setupClickListeners()
   // load existing koalas on page load
   getKoalas();
-
 }); // end doc ready
 
 function setupClickListeners() {
@@ -18,15 +17,19 @@ function setupClickListeners() {
     // NOT WORKING YET :(
     // using a test object
     let koalaToSend = {
-      name: 'testName',
-      age: 'testName',
-      gender: 'testName',
-      readyForTransfer: 'testName',
-      notes: 'testName',
+      name: $('#nameIn').val(),
+      age: $('#ageIn').val(),
+      gender: $('#genderIn').val(),
+      readyForTransfer: $('#readyForTransferIn').val(),
+      notes: $('#notesIn').val(),
     };
-    // call saveKoala with the new obejct
+    // call saveKoala with the new object
     saveKoala( koalaToSend );
+    // TODO set up clear inputs 
   }); 
+  
+  // mark koala as ready for transfer
+  $('#viewKoalas').on('click', '.mark-ready', markReadyHandler);
 }
 
 function getKoalas(){
@@ -72,6 +75,26 @@ function renderKoalas(koalas){
   }
 }
 
+function markReadyHandler() {
+  markAsReady( $(this).data("id"), "true" )
+}
+
+function markAsReady(koalaId, isReady) {
+  $.ajax({
+    method: 'PUT',
+    url: `/koalas/${koalaId}`,
+    data: {
+      isReady: isReady
+    }
+  })
+  .then(response => {
+    getKoalas();
+  })
+  .catch(error => {
+    console.log(`error on koala mark as ready. ${error}`);
+  })
+}
+
 function saveKoala( newKoala ){
   console.log( 'in saveKoala', newKoala );
   // ajax call to server to get koalas
@@ -106,4 +129,3 @@ function removeKoala(koalaId){
     alert(`Error removing koala.`, error);
   })
 }//end removeKoala
-  
