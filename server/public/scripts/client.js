@@ -78,7 +78,7 @@ function saveKoala( newKoala ){
   $.ajax({
     type: 'POST',
     url: '/koalas',
-    data: koalaToAdd,
+    data: newKoala,
   })
   .then( response => {
     console.log('Response from server.', response);
