@@ -1,0 +1,25 @@
+{
+  "name": "koalla_holla",
+  "version": "1.0.0",
+  "description": "This must stop: --------------- ![Nevar again](https://i.makeagif.com/media/8-22-2014/GO_DT4.gif)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/server.js"
+  },
+  "author": "@devjana",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "pg": "^8.6.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cback97/fg2-koala-things.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/cback97/fg2-koala-things/issues"
+  },
+  "homepage": "https://github.com/cback97/fg2-koala-things#readme"
+}
