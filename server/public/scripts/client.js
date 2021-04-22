@@ -23,7 +23,7 @@ function setupClickListeners() {
       readyForTransfer: 'testName',
       notes: 'testName',
     };
-    // call saveKoala with the new obejct
+    // call saveKoala with the new objecct
     saveKoala( koalaToSend );
   }); 
   
