@@ -19,7 +19,7 @@ Client needs
 ------------
 Koala Holla has provided a table of their current inventory:
 
-| id | name    | gender | age | ready_to_transer | notes                            |
+| id | name    | gender | age | ready_to_transfer | notes                            |
 |----|---------|--------|-----|------------------|----------------------------------|
 | 1  | Scotty  | M      | 4   | Y                | Born in Guatemala                |
 | 2  | Jean    | F      | 5   | Y                | Allergic to lots of lava         |
