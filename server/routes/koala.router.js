@@ -1,10 +1,23 @@
 const { Router } = require('express');
 const express = require('express');
 const koalaRouter = express.Router();
+const router = express.Router();
 
 // DB CONNECTION
-
-
+const pg = require('pg');
+const pool = new pg.Pool({
+    database: 'Koalas',
+    host: 'localhost',
+    port: 5432,
+    max: 10,
+    idleTimeoutMillis: 30000,
+});
+pool.on("connect", () => {
+    console.log("connected to postgres");
+});
+pool.on("connect" , () => {
+    console.log("Error connecting to postgres", err);
+});
 // GET
 router.get('/', (req, res) => {
     let queryText = 'SELECT * FROM "koala-DB";';
