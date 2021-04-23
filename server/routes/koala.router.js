@@ -26,7 +26,7 @@ pool.on("error", (err) => {
 
 // GET
 koalaRouter.get('/', (req, res) => {
-    let queryText = 'SELECT * FROM "koala-DB";';
+    let queryText = 'SELECT * FROM "koala-DB" ORDER BY "id";';
     pool.query(queryText).then(result => {
         res.send(result.rows);
     })
