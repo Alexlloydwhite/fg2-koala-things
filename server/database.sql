@@ -5,16 +5,16 @@ CREATE TABLE "koala-DB" (
     "name" varchar(80) not null,
     "gender" varchar(10) not null,
     "age" integer,
-    "ready_to_transer" varchar(3) not null,
+    "ready_to_transfer" BOOLEAN,
     "notes" varchar(80) not null
     );
 
 
-INSERT INTO "koala-DB" ("id", "name", "gender", "age", "ready_to_transer","notes") VALUES (1, 'Scotty', 'M', 4, 'Y', 'Born in Guatemala' ) RETURNING "id", "name", "gender", "age", "ready_to_transer","notes";
-INSERT INTO "koala-DB" ("id", "name", "gender", "age", "ready_to_transer","notes") VALUES (2, 'Jean', 'F', 5, 'Y', 'Allergic to lots of lava' ) RETURNING "id", "name", "gender", "age", "ready_to_transer","notes";
-INSERT INTO "koala-DB" ("id", "name", "gender", "age", "ready_to_transer","notes") VALUES (3, 'Ororo', 'F', 7, 'N', 'Loves listening to Paula (Abdul)' ) RETURNING "id", "name", "gender", "age", "ready_to_transer","notes";
-INSERT INTO "koala-DB" ("id", "name", "gender", "age", "ready_to_transer","notes") VALUES (4, 'Logan', 'M', 15, 'N', 'Loves the sauna' ) RETURNING "id", "name", "gender", "age", "ready_to_transer","notes";
-INSERT INTO "koala-DB" ("id", "name", "gender", "age", "ready_to_transer","notes") VALUES (5, 'Charlie', 'M', 9, 'Y', 'Favorite band is Nirvana' ) RETURNING "id", "name", "gender", "age", "ready_to_transer","notes";
-INSERT INTO "koala-DB" ("id", "name", "gender", "age", "ready_to_transer","notes") VALUES (6, 'Betsy', 'F', 4, 'Y', 'Has a pet iguana' ) RETURNING "id", "name", "gender", "age", "ready_to_transer","notes";
+INSERT INTO "koala-DB" ("name", "gender", "age", "ready_to_transfer","notes") VALUES ('Scotty', 'M', 4, 'true', 'Born in Guatemala' ) RETURNING "id", "name", "gender", "age", "ready_to_transfer","notes";
+INSERT INTO "koala-DB" ("name", "gender", "age", "ready_to_transfer","notes") VALUES ('Jean', 'F', 5, 'true', 'Allergic to lots of lava' ) RETURNING "id", "name", "gender", "age", "ready_to_transfer","notes";
+INSERT INTO "koala-DB" ("name", "gender", "age", "ready_to_transfer","notes") VALUES ('Ororo', 'F', 7, 'false', 'Loves listening to Paula (Abdul)' ) RETURNING "id", "name", "gender", "age", "ready_to_transfer","notes";
+INSERT INTO "koala-DB" ("name", "gender", "age", "ready_to_transfer","notes") VALUES ('Logan', 'M', 15, 'false', 'Loves the sauna' ) RETURNING "id", "name", "gender", "age", "ready_to_transfer","notes";
+INSERT INTO "koala-DB" ("name", "gender", "age", "ready_to_transfer","notes") VALUES ('Charlie', 'M', 9, 'true', 'Favorite band is Nirvana' ) RETURNING "id", "name", "gender", "age", "ready_to_tranfser","notes";
+INSERT INTO "koala-DB" ("name", "gender", "age", "ready_to_transfer","notes") VALUES ('Betsy', 'F', 4, 'true', 'Has a pet iguana' ) RETURNING "id", "name", "gender", "age", "ready_to_transfer","notes";
 
 SELECT * FROM "koala-DB"; 
