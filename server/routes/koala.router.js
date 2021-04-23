@@ -6,7 +6,7 @@ const router = express.Router();
 // DB CONNECTION
 const pg = require('pg');
 const pool = new pg.Pool({
-    database: 'Koalas',
+    database: 'Koala',
     host: 'localhost',
     port: 5432,
     max: 10,
@@ -15,13 +15,13 @@ const pool = new pg.Pool({
 pool.on("connect", () => {
     console.log("connected to postgres");
 });
-pool.on("connect" , () => {
+pool.on("error" , () => {
     console.log("Error connecting to postgres", err);
 });
 // GET
 router.get('/', (req, res) => {
-    let queryText = 'SELECT * FROM "koala-DB";';
-    pool.query(queryText).then(result => {
+    let queryText = 'SELECT * FROM "koala-DB" ORDER BY "age" DESC;';
+    pool.query(queryText).then(result => { 
         res.send(result.rows);
     })
     .catch(error => {
