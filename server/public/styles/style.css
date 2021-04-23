@@ -1,0 +1,34 @@
+body {
+    margin: 0;
+    background-color: rgb(177, 235, 215);
+}
+
+h1 {
+    font-family: 'Oswald', sans-serif;
+    text-align: center;
+    
+}
+
+#address {
+    text-align: center;
+    opacity: .5;
+    margin-bottom: 1em;
+    font-style: Arial;
+}
+
+.icon {
+    width: 25%;
+    height: auto;
+    border: .25rem;
+    border-style: solid;
+    border-color:  rgb(177, 235, 215); 
+}
+
+section {
+  margin: auto;
+  width: 80%;
+}
+
+.mark-ready {
+    width: 75%
+}
