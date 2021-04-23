@@ -1,10 +1,10 @@
 ## Project Description
 
-This project was an introduction to working as a group and using branching and pull requests. 
+This project was an introduction to working in groups and using branching and pull requests. 
 
 I completed this project with 3 other Prime Academy cohort mates. During this project we dove head first into the magical world of GIT and the wonders of merge conflicts :). 
 
-In addition to the technologies listed below, we used Trillo to develop a data structure and organize tasks, Slack video to communicate, and VS Code live share.
+In addition to the technologies listed below, we used Trello to develop a data structure and organize tasks, Slack video to communicate, and VS Code live share.
 
 This must stop:
 ---------------
