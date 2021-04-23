@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const express = require('express');
 const koalaRouter = express.Router();
-// const router = express.Router();
+
 
 // DB CONNECTION
 const pg = require('pg');
@@ -41,9 +41,18 @@ koalaRouter.post('/', (req, res) => {
     let newKoala = req.body;
     console.log('Adding Koala', newKoala);
 
+    if ( newKoala.readyForTransfer === 'true') {
+        newKoala.readyForTransfer = true;
+        console.log(newKoala.readyForTransfer);
+    } 
+    if (  newKoala.readyForTransfer === 'false') {
+       newKoala.readyForTransfer = false;
+       console.log(newKoala.readyForTransfer);
+    }
+
     let queryText = `INSERT INTO "koala-DB" ("name", "age", "gender", "ready_to_transfer", "notes")
                     VALUES ($1, $2, $3, $4, $5);`;
-    pool.query(queryText, [newKoala.name, newKoala.age, newKoala.gender, newKoala.ready_to_transfer, newKoala.notes])
+    pool.query(queryText, [newKoala.name, newKoala.age, newKoala.gender, newKoala.readyForTransfer, newKoala.notes])
         .then(result => {
             res.sendStatus(201);
         })
@@ -54,7 +63,7 @@ koalaRouter.post('/', (req, res) => {
 });
 
 // PUT
-koalaRouter.put('/isReady/:id', (req, res) => {
+koalaRouter.put('/ready_to_transfer/:id', (req, res) => {
     let koalaId = req.params.id;
     let boolean = req.body.boolean;
     let sqlText = '';

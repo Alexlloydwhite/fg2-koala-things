@@ -28,8 +28,6 @@ function setupClickListeners() {
 
   // mark koala as ready for transfer
   $('#viewKoalas').on('click', '.mark-ready', markReadyHandler);
-  // clears inputs
-  clearInputs();
 }
 
 function clearInputs(){
@@ -69,7 +67,7 @@ function renderKoalas(koalas){
       <td>${koalas[i].ready_to_transfer}</td>
       <td>${koalas[i].notes}</td>
       <td>
-        <button type="button" class="markReady" data-id="${koalas[i].id}">
+        <button type="button" class="mark-ready" data-id="${koalas[i].id}">
           Ready For Transfer
         </button>
       </td>
@@ -78,6 +76,7 @@ function renderKoalas(koalas){
           Delete
         </button>
       </td>
+    </tr>
     `)
     $('#viewKoalas').append(newRow);
   }
@@ -88,11 +87,12 @@ function markReadyHandler() {
 }
 
 function markAsReady(koalaId, isReady) {
+  console.log('click');
   $.ajax({
     method: 'PUT',
-    url: `/koalas/${koalaId}`,
+    url: `/koalas/ready_to_transfer/${koalaId}`,
     data: {
-      isReady: isReady
+      boolean: isReady
     }
   })
   .then(response => {
@@ -114,6 +114,8 @@ function saveKoala( newKoala ){
   .then( response => {
     console.log('Response from server.', response);
     getKoalas();
+    // clears inputs
+    clearInputs();
   })
   .catch(error =>{
     console.log('Error', error);
