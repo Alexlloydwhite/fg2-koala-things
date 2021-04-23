@@ -1,27 +1,32 @@
 const { Router } = require('express');
 const express = require('express');
 const koalaRouter = express.Router();
-const router = express.Router();
+
 
 // DB CONNECTION
 const pg = require('pg');
-const pool = new pg.Pool({
+const pool = new pg.Pool(config);
+
+const config = {
     database: 'Koala',
     host: 'localhost',
     port: 5432,
     max: 10,
     idleTimeoutMillis: 30000,
-});
+}
+
 pool.on("connect", () => {
     console.log("connected to postgres");
 });
-pool.on("error" , () => {
+
+pool.on("error", (err) => {
     console.log("Error connecting to postgres", err);
 });
+
 // GET
-router.get('/', (req, res) => {
-    let queryText = 'SELECT * FROM "koala-DB" ORDER BY "age" DESC;';
-    pool.query(queryText).then(result => { 
+koalaRouter.get('/', (req, res) => {
+    let queryText = 'SELECT * FROM "koala-DB" ORDER BY "id";';
+    pool.query(queryText).then(result => {
         res.send(result.rows);
     })
     .catch(error => {
@@ -31,13 +36,22 @@ router.get('/', (req, res) => {
 });
 
 // POST
-router.post('/', (req, res) => {
+koalaRouter.post('/', (req, res) => {
     let newKoala = req.body;
     console.log('Adding Koala', newKoala);
 
+    if ( newKoala.readyForTransfer === 'true') {
+        newKoala.readyForTransfer = true;
+        console.log(newKoala.readyForTransfer);
+    } 
+    if (  newKoala.readyForTransfer === 'false') {
+       newKoala.readyForTransfer = false;
+       console.log(newKoala.readyForTransfer);
+    }
+
     let queryText = `INSERT INTO "koala-DB" ("name", "age", "gender", "ready_to_transfer", "notes")
                     VALUES ($1, $2, $3, $4, $5);`;
-    pool.query(queryText, [newKoala.name, newKoala.age, newKoala.gender, newKoala.ready_to_transfer, newKoala.notes])
+    pool.query(queryText, [newKoala.name, newKoala.age, newKoala.gender, newKoala.readyForTransfer, newKoala.notes])
         .then(result => {
             res.sendStatus(201);
         })
@@ -48,7 +62,7 @@ router.post('/', (req, res) => {
 });
 
 // PUT
-router.put('/isReady/;id', (req, res) => {
+koalaRouter.put('/ready_to_transfer/:id', (req, res) => {
     let koalaId = req.params.id;
     let boolean = req.body.boolean;
     let sqlText = '';
@@ -69,7 +83,7 @@ router.put('/isReady/;id', (req, res) => {
 });
 
 // DELETE
-router.delete('/:id', (req, res) => {
+koalaRouter.delete('/:id', (req, res) => {
     let reqId = req.params.id;
     console.log('Delete request id', reqId);
 
